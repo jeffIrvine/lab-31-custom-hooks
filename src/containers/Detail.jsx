@@ -1,21 +1,14 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Character from '../components/characters/Character';
-import { getSingleCharacter } from '../services/getSingle';
+import { useSingleCharacter } from '../hooks/character';
 
-const DetailContainer = ({ match }) => {
-  const [loading, setLoading] = useState(true);
-  const [character, setDetail] = useState([]);
+const Detail = ({ match }) => {
+  const { loading, character } = useSingleCharacter(match.params.id);
 
-  useEffect(() => {
-    getSingleCharacter(match.params.id).then((detail) => {
-      setDetail(detail);
-      setLoading(false);
-    });
-  }, []);
 
   if(loading) return <h1>Loading</h1>;
   return <Character {...character} />;
 };
 
-export default DetailContainer;
+export default Detail;

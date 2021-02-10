@@ -1,39 +1,32 @@
-import { useState, useEffect } from 'react';
-import { getAllCharacters } from '../services/getAll';
-import { getSingleCharacter } from '../services/getSingle';
+/* eslint-disable max-len */
+import React from 'react';
+import { render, screen, waitFor } from '@testing-library/react';
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+import singleJsonCharacter from '../fixtures/singleCharacter.json';
+import Detail from './Detail';
 
-export const useSingleCharacter = () => {
-  const [loading, setLoading] = useState(true);
-  const [character, setDetail] = useState([]);
+const server = setupServer(
+  rest.get('https://rickandmortyapi.com/api/character/1', (req, res, ctx) => {
+    return res(ctx.json(singleJsonCharacter));
+  })
+);
 
-  useEffect(() => {
-    getSingleCharacter()
-      .then((character) => {
-        setDetail(character);
-        setLoading(false);
-      });
-  }, []);
+describe('Detail container', () => {
+  beforeAll(() => server.listen());
+  afterAll(() => server.close());
+  
+  it('fetches and displays a single character', async() => {
+    render(
+      <Detail match={{ params: { id: '1' } }}/>
+    );
 
-  return {
-    loading,
-    character
-  };
-};
+    screen.getByText('Loading');
 
-export const useAllCharacters = () => {
-  const [loading, setLoading] = useState(true);
-  const [characters, setList] = useState([]);
-
-  useEffect(() => {
-    getAllCharacters()
-      .then((characters) => {
-        setList(characters);
-        setLoading(false);
-      });
-  }, []);
-
-  return {
-    loading,
-    characters
-  };
-};
+    return waitFor(() => {
+      screen.getByText('Rick Sanchez');
+      screen.getByText('Human');
+      screen.getByAltText('Rick Sanchez');
+    });
+  });
+});

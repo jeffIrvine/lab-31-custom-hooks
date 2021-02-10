@@ -1,27 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Character = ({ count }) => {
+const Header = () => {
 
   return (
     <>
       <div>
         <h1>Welcome!</h1>
-        <button>&lt</button>
-        <span>Page #</span>{count}
-        <button>&gt</button>
       </div>
       <div>
-        <Link to={'/'}/>
+        <Link to={'/'}><button>Home</button></Link>
       </div>
     </>
   );
 };
 
-Character.propTypes = {
-  count: PropTypes.integer.isRequired
-};
-
-
-export default Character;
+export default Header;

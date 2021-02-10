@@ -1,13 +1,13 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Detail from '../detail/Detail';
-import { Link } from 'react-router-dom';
+import Character from '../../components/characters/Character';
 
 const CharacterList = ({ characters }) => {
   const ListCard = characters.map((character) => (
     <Link key={character.id} to = {`/details/${character.id}`}>
       <li key={character.id}>
-        <Detail
+        <Character
           name={character.name}
           image={character.image}
           species={character.species}
@@ -15,7 +15,7 @@ const CharacterList = ({ characters }) => {
       </li>
     </Link>
   ));
-  return <ul data-testid="results">{ListCard}</ul>;
+  return <ul data-testid="characters">{ListCard}</ul>;
 };
 
 CharacterList.propTypes = {

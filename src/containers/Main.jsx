@@ -7,7 +7,7 @@ const Main = () => {
 
 
   if(loading) return <h1>Loading</h1>;
-  return <CharacterList results={characters} />;
+  return <CharacterList characters={characters} />;
 };
 
 export default Main;
