@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Character from '../components/characters/Character';
-import { useSingleCharacter } from '../hooks/character';
+import { useSingleCharacter } from '../state/character';
 
 const Detail = ({ match }) => {
   const { loading, character } = useSingleCharacter(match.params.id);

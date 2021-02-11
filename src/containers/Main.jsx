@@ -1,6 +1,6 @@
 import React from 'react';
 import CharacterList from '../components/characters/CharacterList';
-import { useAllCharacters } from '../hooks/character';
+import { useAllCharacters } from '../state/character';
 
 const Main = () => {
   const { loading, characters } = useAllCharacters();

@@ -1,16 +1,16 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import CharacterList from './CharacterList';
-import { ThemeProvider } from '../../state/themeProvider';
+import Header from './Header';
+import { ThemeProvider } from '../state/themeProvider';
 import { MemoryRouter } from 'react-router-dom';
 
-describe('CharacterList component', () => {
+describe('Header component', () => {
   afterEach(() => cleanup());
-  it('renders CharacterList', () => {
+  it('renders Header', () => {
     const { asFragment } = render(
       <ThemeProvider>
         <MemoryRouter>
-          <CharacterList characters={[]}/>
+          <Header />
         </MemoryRouter>
       </ThemeProvider>
     );

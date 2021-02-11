@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import Character from './Character';
+import { ThemeProvider } from '../../state/themeProvider';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('Character component', () => {
   afterEach(() => cleanup());
@@ -10,7 +12,13 @@ describe('Character component', () => {
       species: 'Human',
       image: 'http'
     };
-    const { asFragment } = render(<Character {...characterObj}/>);
+    const { asFragment } = render(
+      <ThemeProvider>
+        <MemoryRouter>
+          <Character {...characterObj}/>
+        </MemoryRouter>
+      </ThemeProvider>
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 });
