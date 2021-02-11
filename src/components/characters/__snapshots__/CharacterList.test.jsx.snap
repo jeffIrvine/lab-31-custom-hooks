@@ -2,8 +2,12 @@
 
 exports[`CharacterList component renders CharacterList 1`] = `
 <DocumentFragment>
-  <ul
-    data-testid="characters"
-  />
+  <div
+    class="dark-mode"
+  >
+    <ul
+      data-testid="characters"
+    />
+  </div>
 </DocumentFragment>
 `;

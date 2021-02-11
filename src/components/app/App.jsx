@@ -8,21 +8,24 @@ import {
 import Main from '../../containers/Main';
 import Detail from '../../containers/Detail';
 import Header from '../Header';
+import { ThemeProvider } from '../../state/themeProvider';
 
 export default function App() {
   return (
     <Router>
-      <Header />
-      <Switch>
-        <Route
-          exact path="/"
-          component = {Main}
-        />
-        <Route
-          exact path="/details/:id"
-          component = {Detail}
-        />
-      </Switch>
+      <ThemeProvider>
+        <Header />
+        <Switch>
+          <Route
+            exact path="/"
+            component = {Main}
+          />
+          <Route
+            exact path="/details/:id"
+            component = {Detail}
+          />
+        </Switch>
+      </ThemeProvider>
     </Router>
   );
 }
